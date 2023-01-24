@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser')
 const pg = require('pg');
 const app = express();
 const routes = require('./app/routes/router');
@@ -14,6 +15,13 @@ const config = {
     max: 10, // max number of clients in the pool
     idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
 };
+
+app.use(bodyParser.json())
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+)
 
 const pool = new pg.Pool(config);
 

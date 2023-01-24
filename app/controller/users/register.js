@@ -6,18 +6,18 @@ const pool = require("../../config/connection")
 //Registration Function
 
 const register  =  async (req, res) => {
-    const { fullname, email, phone, password, usertype } =  req.body;
-    // var myuser = {
-    //     "fullname": fullname,
-    //     "email": email,
-    //     "phone": phone,
-    //     "password": password,
-    //     "usertype": usertype
-    // }
-    
-    // console.log(myuser)
+    const { fullname, email, password, phone, address, status, usertype } =  req.body;
+    // const fullname = req.body;
+    // const email= req.body;
+    // const password= req.body;
+    // const phone= req.body;
+    // const address= req.body;
+    // const status= req.body;
+    // // const createdAt= req.body;
+    // const usertype = req.body;
+
     try {
-        const  data  =  await pool.query(`SELECT * FROM public.users WHERE email= $1;`, [email]); //Checking if user already exists
+        const  data  =  await pool.query(`SELECT * FROM public."Users" WHERE email= $1;`, [email]); //Checking if user already exists
         const  arr  =  data.rows;
 
         if (arr.length  !=  0) {
@@ -34,17 +34,19 @@ const register  =  async (req, res) => {
             const  user  = {
                 fullname,
                 email,
-                phone,
                 password: hash,
+                phone,
+                address,
+                status,
                 usertype
 
             };
             var  flag  =  1; //Declaring a flag
 
             //Inserting data into the database
-            if(user.fullname !==  null && user.fullname && user.email !==  null && user.email !==  '' && user.phone !==  null && user.phone !==  '' && user.password !==  null && user.password !==  '')
+            if(user.fullname !==  null && user.fullname && user.email !==  null && user.email !==  '' && user.phone !==  null && user.phone !==  '' && user.password !==  null && user.password !==  '' && user.usertype !== '' && user.usertype !== null)
             {
-                pool.query(`INSERT INTO public.users(fullname, email, phone, password, usertype) VALUES ($1,$2,$3,$4,$5);`, [user.fullname, user.email, user.phone, user.password, user.usertype], (err) => {
+                pool.query(`INSERT INTO public."Users"(fullname,email,password,phone,address,status,usertype) VALUES ($1,$2,$3,$4,$5,$6,$7);`, [user.fullname,user.email,user.password,user.phone,user.address,user.status,user.usertype], (err) => {
                     if (err) {
                         flag  =  0; //If user is not inserted is not inserted to database assigning flag as 0/false.
                         console.error(err);
