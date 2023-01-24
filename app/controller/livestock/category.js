@@ -21,6 +21,11 @@ const postCategory = (req, res) => {
       res.status(201).send(`categoryName added`)
     })
 }
+
+
+
+
+
 module.exports = {
     postCategory,
 }
