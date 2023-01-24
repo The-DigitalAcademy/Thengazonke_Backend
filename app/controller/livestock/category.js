@@ -4,11 +4,11 @@ const handleErr = (err, req, res, next) => {
   res.status(400).send({ error: err.message })
 }
 
-// const getCategory = (req, res) => {
-//     pool.query('SELECT * FROM public."Users" ORDER BY "Userid" ASC ', (error, results) => {
-//       res.status(200).send(results.rows)
-//     }),handleErr
-// }
+const getCategory = (req, res) => {
+    pool.query('SELECT * FROM "public"."Category" ORDER BY "categoryID" ASC ', (error, results) => {
+      res.status(200).send(results.rows)
+    }),handleErr
+}
 
 
 const postCategory = (req, res) => {
@@ -21,6 +21,23 @@ const postCategory = (req, res) => {
       res.status(201).send(`categoryName added`)
     })
 }
+
+
+const updateCategory = (req, res) => {
+    const categoryID = req.params.id;
+    const categoryName = req.body
+  
+    pool.query('UPDATE "public"."Category" SET "categoryName"=$1 returning *',[categoryName, categoryID], (error, results) => {
+        
+          response.status(200).send()
+        //response.send(JSON.stringify(results));
+        
+      }
+    )
+  }
+
 module.exports = {
     postCategory,
+    getCategory,
+    updateCategory
 }
