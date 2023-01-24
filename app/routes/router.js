@@ -5,6 +5,7 @@ const reg = require('../controller/users/register');
 const user = require('../controller/users/user');
 const category = require('../controller/livestock/category');
 const livestock = require('../controller/livestock/livestock');
+const breed = require('../controller/livestock/breed')
 
 //routes for login and registering
 router.post('/users/login', login.login)
@@ -23,6 +24,14 @@ router.put('/category/updateCategory', category.updateCategory)
 router.get('/livestock/getLivestock', livestock.getLivestock)
 router.post('/livestock/createLivestock', livestock.postLivestock)
 router.put('/livestock/updateLivestock', livestock.updateLivestock)
+
+
+//routes for breed
+router.post('/breed/createBreed', breed.postBreed)
+router.put('/breed/updateBreed/:id' , breed.updateBreed)
+router.delete('/breed/deleteBreed/:id', breed.removeBreed)
+router.get('/breed/getAllBreed',breed.breed)
+
 
 
 module.exports = router;  
