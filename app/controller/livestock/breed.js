@@ -13,13 +13,13 @@ const handleErr = (err, req, res, next) => {
 
 const postBreed = (req, res) => {
 
-    const {breedName, categoryID} = req.body;
+    const {categoryID, breedName} = req.body;
 
-    pool.query('INSERT INTO public."Breed"("categoryID", "breedName",)VALUES ($1,$2)',[breedName, categoryID], (error, results) => {
+    pool.query('INSERT INTO "public"."Breed"("categoryID", "breedName")VALUES ($1,$2)',[categoryID,breedName], (error, results) => {
       if (error) {
       }
       res.status(201).send(`Breed added`)
-    })
+    }),handleErr
 }
 
 //update breed
@@ -75,14 +75,14 @@ const updateBreed= (req, res) => {
     
     {
             
-           con.query('SELECT "breedID", "categoryID", "breedName", "createdAt" FROM public."Breed"', function (error, results, fields) 
+           pool.query('SELECT "breedID", "categoryID", "breedName", "createdAt" FROM public."Breed"', function (error, results) 
 
             {
                  if(error){
                   res.send('data not found')
     
                  }else{
-                  res.send(results)
+                  res.send(results.rows)
                  }
     
             })
