@@ -17,7 +17,6 @@ const postCategory = (req, res) => {
 
     pool.query('INSERT INTO "public"."Category" ("categoryName") VALUES ($1)',  [categoryName], (error, results) => {
       if (error) {
-        throw error
       }
       res.status(201).send(`categoryName added`)
     })
