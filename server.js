@@ -1,6 +1,7 @@
 const express = require('express');
 const pg = require('pg');
 const app = express();
+const routes = require('./app/routes/router');
 
 
 // postgres://djaklifj:DKwTKeY5SZFs8uQ58NDgxxehI16YOAuu@ruby.db.elephantsql.com/djaklifj
@@ -32,6 +33,8 @@ app.get('/', (req, res) => {
         });
     });
 });
+
+app.use('/', routes);
 
 app.listen(3000, () => {
     console.log('Server running on port 3000');
