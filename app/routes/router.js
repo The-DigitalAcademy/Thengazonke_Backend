@@ -31,7 +31,7 @@ router.post('/breed/createBreed', breed.postBreed)
 router.put('/breed/updateBreed/:id' , breed.updateBreed)
 router.delete('/breed/deleteBreed/:id', breed.removeBreed)
 router.get('/breed/getAllBreed',breed.breed)
-
+router.get('/breed/getOnebreed/:id', breed.getBreedById)
 
 
 module.exports = router;  
