@@ -40,26 +40,6 @@ const updateBreed = (request, response) => {
   }
 
   //delete breed
-
-//   const removeBreed = (req, res) => {
-    
-    
-//     {
-//     const id=parseInt(req.params.id)
-            
-//            pool.query('DELETE FROM public."Breed" WHERE  breedID = $1;',[id], function (error, results, fields) 
-
-//             {
-//                  if(error){
-//                   res.send('not deleted')
-    
-//                  }else{
-//                   res.send(results.rows)
-//                  }
-    
-//             })
-       
-//   }}
     
 const removeBreed = (request, response) => {
     const id = parseInt(request.params.id)

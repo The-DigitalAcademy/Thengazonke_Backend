@@ -39,6 +39,8 @@ router.get('/breed/getOnebreed/:id', breed.getBreedById)
 
 //routes for rating 
 router.post('/rate/createRate',rating.createRating)
+router.get('/rate/getRatings',rating.getRating)
+router.get('/rate/getRatingPerUser/:id', rating.getRatingPerUser)
 
 //routes for transaction
 router.post('/transaction/createTrans',transaction.createTransaction)
