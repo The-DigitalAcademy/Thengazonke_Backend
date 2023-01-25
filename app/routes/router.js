@@ -22,8 +22,9 @@ router.put('/category/updateCategory', category.updateCategory)
 
 //routes for category
 router.get('/livestock/getLivestock', livestock.getLivestock)
+router.get('/livestock/getPostedLivestock', livestock.getPostedLivestock)
 router.post('/livestock/createLivestock', livestock.postLivestock)
-router.put('/livestock/updateLivestock', livestock.updateLivestock)
+router.put('/livestock/updateLivestock/:id', livestock.updateLivestock)
 
 
 //routes for breed
