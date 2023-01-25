@@ -13,9 +13,9 @@ const handleErr = (err, req, res, next) => {
 
 const postBreed = (req, res) => {
 
-    const {categoryID, breedName} = req.body;
+    const {categoryID, breedName, description} = req.body;
 
-    pool.query('INSERT INTO "public"."Breed"("categoryID", "breedName")VALUES ($1,$2)',[categoryID,breedName], (error, results) => {
+    pool.query('INSERT INTO "public"."Breed"("categoryID", "breedName","description")VALUES ($1,$2,$3)',[categoryID,breedName,description], (error, results) => {
       if (error) {
       }
       res.status(201).send(`Breed added`)
@@ -23,59 +23,61 @@ const postBreed = (req, res) => {
 }
 
 //update breed
-const updateBreed= (req, res) => {
-
-
-    const id=parseInt(req.params.id)
-    const {breedName,categoryID} = req.body; 
-
-    var breed={
-
-      "breedName":breedName,
-      "categoryID":categoryID
-    
-   
-  }
-   pool.query(' UPDATE public."Breed" SET "categoryID"=$1, "breedName"=$2 WHERE  breedID = $3;',[breed,id], function (error, results, fields) 
-    {
-         if(error){
-          res.send('data not sent')
-
-         }else{
-          res.send(' breed Updated succesfully!')
-         }
-
-    })
+const updateBreed = (request, response) => {
+    const id = parseInt(request.params.id)
+    const { categoryID, breedName, description } = request.body
+  
+    pool.query(
+      'UPDATE "public"."Breed" SET  "categoryID"= $1, "breedName" = $2 , "description"=$3 WHERE "breedID" = $4',
+      [categoryID, breedName,description, id],
+      (error, results) => {
+        if (error) {
+          throw error
+        }
+        response.status(200).send(`Breed modified with ID: ${id}`)
+      }
+    )
   }
 
   //delete breed
 
-  const removeBreed = (req, res) => {
+//   const removeBreed = (req, res) => {
     
     
-    {
-    const id=parseInt(req.params.id)
+//     {
+//     const id=parseInt(req.params.id)
             
-           con.query('DELETE FROM public."Breed" WHERE  breedID = $1;',[id], function (error, results, fields) 
+//            pool.query('DELETE FROM public."Breed" WHERE  breedID = $1;',[id], function (error, results, fields) 
 
-            {
-                 if(error){
-                  res.send('not deleted')
+//             {
+//                  if(error){
+//                   res.send('not deleted')
     
-                 }else{
-                  res.send(results)
-                 }
+//                  }else{
+//                   res.send(results.rows)
+//                  }
     
-            })
+//             })
        
-  }}
+//   }}
     
+const removeBreed = (request, response) => {
+    const id = parseInt(request.params.id)
+  
+    pool.query('DELETE FROM "public"."Breed" WHERE "breedID" = $1', [id], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).send(`Breed deleted with ID: ${id}`)
+    })
+  }
+
   //get all breed
   const breed = (req, res) => {
     
     {
             
-           pool.query('SELECT "breedID", "categoryID", "breedName", "createdAt" FROM public."Breed"', function (error, results) 
+           pool.query('SELECT "breedID", "categoryID", "breedName", "description","createdAt" FROM "public"."Breed"', function (error, results) 
 
             {
                  if(error){
@@ -88,10 +90,22 @@ const updateBreed= (req, res) => {
             })
             
           }}
+//get breed by id
+          const getBreedById = (request, response) => {
+            const id = parseInt(request.params.id)
+          
+            pool.query('SELECT * FROM "public"."Breed" WHERE "breedID" = $1', [id], (error, results) => {
+              if (error) {
+                throw error
+              }
+              response.status(200).json(results.rows)
+            })
+          }
 
 module.exports = {
     postBreed,
     updateBreed,
     removeBreed,
-    breed
+    breed,
+    getBreedById
 }
