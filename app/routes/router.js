@@ -43,5 +43,6 @@ router.get('/rate/getRatingPerUser/:id', rating.getRatingPerUser)
 
 //routes for transaction
 router.post('/transaction/createTrans',transaction.createTransaction)
+router.put('/transaction/updateTrans/:id', transaction.updateTransaction)
 
 module.exports = router;  
