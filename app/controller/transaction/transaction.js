@@ -15,6 +15,26 @@ const createTransaction = (req, res) => {
     }),handleErr
 }
 
+const updateTransaction = (request, response) => {
+  const id = parseInt(request.params.id)
+  const {status}  = request.body
+
+  pool.query(
+   // 'UPDATE "public"."Breed" SET  "categoryID"= $1, "breedName" = $2 , "description"=$3 WHERE "breedID" = $4',
+
+
+   ' UPDATE "public"."Transaction" SET "status" =$1 WHERE "transactionID"=$2',
+
+
+    [status, id],
+    (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).send(`Breed modified with ID: ${id}`)
+    }
+  )
+}
 
 const getTransaction = (req, res) => {
   pool.query('SELECT * FROM "public"."Transaction" ORDER BY "transactionID" ASC ', (error, results) => {

@@ -45,7 +45,6 @@ router.get('/rate/getRatingPerUser/:id', rating.getRatingPerUser)
 //routes for transaction
 router.post('/transaction/createTransaction', transaction.createTransaction)
 router.put('/transaction/updateTransaction/:id' , transaction.updateTransaction)
-// router.delete('/transaction/deleteTransaction/:id', transaction.removeBreed)
 router.get('/transaction/getAllTransaction',transaction.getTransaction)
 
 module.exports = router;  
