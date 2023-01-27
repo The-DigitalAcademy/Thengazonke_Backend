@@ -19,14 +19,15 @@ router.get('/users/getUsers', user.getUsers)
 router.post('/users/createUsers', user.postUsers)
 
 //routes for category
-router.get('/category/getCategory', category.postCategory)
+router.get('/category/getCategory', category.getCategory)
 router.post('/category/createCategory', category.postCategory)
 router.put('/category/updateCategory', category.updateCategory)
 
 //routes for livestock
 router.get('/livestock/getLivestock', livestock.getLivestock)
+router.get('/livestock/getPostedLivestock', livestock.getPostedLivestock)
 router.post('/livestock/createLivestock', livestock.postLivestock)
-router.put('/livestock/updateLivestock', livestock.updateLivestock)
+router.put('/livestock/updateLivestock/:id', livestock.updateLivestock)
 
 
 //routes for breed
@@ -42,7 +43,8 @@ router.get('/rate/getRatings',rating.getRating)
 router.get('/rate/getRatingPerUser/:id', rating.getRatingPerUser)
 
 //routes for transaction
-router.post('/transaction/createTrans',transaction.createTransaction)
-router.put('/transaction/updateTrans/:id', transaction.updateTransaction)
+router.post('/transaction/createTransaction', transaction.createTransaction)
+router.put('/transaction/updateTransaction/:id' , transaction.updateTransaction)
+router.get('/transaction/getAllTransaction',transaction.getTransaction)
 
 module.exports = router;  
