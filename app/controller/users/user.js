@@ -13,17 +13,7 @@ const getUsers = (req, res) => {
 
 
 
-const postUsers = (req, res) => {
-
-    // const fullname = req.body.fullname;
-    // const email = req.body.email;
-    // const password = req.body.password;
-    // const phone= req.body.phone;
-    // const address= req.body.address;
-    // const status= req.body.status;
-    // const usertype = req.body.usertype;
-
-   
+const postUsers = (req, res) => {   
 
     const { fullname, email, password ,phone ,address ,status, usertype} = req.body;
 
@@ -35,7 +25,22 @@ const postUsers = (req, res) => {
     })
 }
 
+const updateUser = (req, res) => {
+
+    const Userid = req.params.id;
+    const { fullname, email, phone ,address ,status, usertype } = req.body
+  
+    pool.query('UPDATE "public"."Users" SET fullname=$1, email=$2, phone=$3, address=$4, status=$5, usertype=$6 WHERE "Userid" = $7;',[fullname, email, phone ,address ,status, usertype, Userid], (error, results) => {
+        
+          res.status(200).send()
+        //response.send(JSON.stringify(results));
+        
+      }
+    )
+  }
+
 module.exports = {
     getUsers,
     postUsers,
+    updateUser
   }

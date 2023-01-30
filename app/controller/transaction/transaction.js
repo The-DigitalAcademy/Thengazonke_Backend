@@ -15,31 +15,42 @@ const createTransaction = (req, res) => {
     }),handleErr
 }
 
+const updateTransaction = (request, response) => {
+  const id = parseInt(request.params.id)
+  const {status}  = request.body
 
+  pool.query(
+   // 'UPDATE "public"."Breed" SET  "categoryID"= $1, "breedName" = $2 , "description"=$3 WHERE "breedID" = $4',
+
+
+   ' UPDATE "public"."Transaction" SET "status" =$1 WHERE "transactionID"=$2',
+
+
+    [status, id],
+    (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).send(`Breed modified with ID: ${id}`)
+    }
+  )
+}
+
+const getFullTransaction = (req, res) => {
+  pool.query('SELECT t.status,t."transDate", t."transactionID",u.fullname,u."Userid", l.age, l.image,l.price,l.weight, c."categoryName", b."breedName" FROM public."Transaction" t, "Livestock" l, "Users" u, "Category" c, "Breed" b WHERE t."livestockID" = l."livestockID" AND t."userID" = u."Userid" AND l."categoryID" = c."categoryID" AND l."breedID" = b."breedID" ORDER BY t."transactionID" ASC ', (error, results) => {
+    res.status(200).send(results.rows)
+  }),handleErr
+}
 const getTransaction = (req, res) => {
   pool.query('SELECT * FROM "public"."Transaction" ORDER BY "transactionID" ASC ', (error, results) => {
     res.status(200).send(results.rows)
   }),handleErr
 }
 
-const updateTransaction = (req, res) => {
-  const transactionID = parseInt(req.params.id);
-  const {livestockID, userID, status } = req.body
-
-  pool.query('UPDATE "public"."Transaction" SET "livestockID"=$1, "userID"=$2, status=$3 WHERE transactionID = $4;',
-  [livestockID, userID, status, transactionID], (error, results) => {
-      
-        res.status(200).send()
-      //response.send(JSON.stringify(results));
-      
-    }
-  )
-}
-
-
 
 module.exports = {
     createTransaction,
     getTransaction,
-    updateTransaction
+    updateTransaction,
+    getFullTransaction
 }
