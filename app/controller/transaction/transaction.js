@@ -22,13 +22,6 @@ const getTransaction = (req, res) => {
   }),handleErr
 }
 
-const getFullTransaction = (req, res) => {
-  pool.query('SELECT t.status,t."transDate", t."transactionID",u.fullname,u."Userid", l.age, l.image,l.price,l.weight, c."categoryName", b."breedName" FROM public."Transaction" t, "Livestock" l, "Users" u, "Category" c, "Breed" b WHERE t."livestockID" = l."livestockID" AND t."userID" = u."Userid" AND l."categoryID" = c."categoryID" AND l."breedID" = b."breedID" ORDER BY t."transactionID" ASC ', (error, results) => {
-    res.status(200).send(results.rows)
-  }),handleErr
-}
-
-
 
 const updateTransaction = (req, res) => {
   const transactionID = parseInt(req.params.id);
@@ -44,7 +37,11 @@ const updateTransaction = (req, res) => {
   )
 }
 
-
+const getFullTransaction = (req, res) => {
+  pool.query('SELECT t.status,t."transDate", t."transactionID",u.fullname,u."Userid", l.age, l.image,l.price,l.weight, c."categoryName", b."breedName" FROM public."Transaction" t, "Livestock" l, "Users" u, "Category" c, "Breed" b WHERE t."livestockID" = l."livestockID" AND t."userID" = u."Userid" AND l."categoryID" = c."categoryID" AND l."breedID" = b."breedID" ORDER BY t."transactionID" ASC ', (error, results) => {
+    res.status(200).send(results.rows)
+  }),handleErr
+}
 
 module.exports = {
     createTransaction,
