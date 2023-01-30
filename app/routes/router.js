@@ -17,6 +17,7 @@ router.post('/users/register', reg.register)
 //routes for users
 router.get('/users/getUsers', user.getUsers)
 router.post('/users/createUsers', user.postUsers)
+router.put('/users/updateUsers/:id', user.updateUser)
 
 //routes for category
 router.get('/category/getCategory', category.getCategory)
@@ -26,6 +27,7 @@ router.put('/category/updateCategory', category.updateCategory)
 //routes for livestock
 router.get('/livestock/getLivestock', livestock.getLivestock)
 router.get('/livestock/getPostedLivestock', livestock.getPostedLivestock)
+router.get('/livestock/getPostedLivestockByUser', livestock.getPostedLivestockByUser)
 router.post('/livestock/createLivestock', livestock.postLivestock)
 router.put('/livestock/updateLivestock/:id', livestock.updateLivestock)
 
