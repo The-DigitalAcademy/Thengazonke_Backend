@@ -49,5 +49,6 @@ router.post('/transaction/createTransaction', transaction.createTransaction)
 router.put('/transaction/updateTransaction/:id' , transaction.updateTransaction)
 // router.delete('/transaction/deleteTransaction/:id', transaction.removeBreed)
 router.get('/transaction/getAllTransaction',transaction.getTransaction)
+router.get('/transaction/getFullTransaction',transaction.getFullTransaction)
 
 module.exports = router;  
