@@ -19,7 +19,7 @@ const getPostedLivestock = (req, res) => {
 
 const postLivestock = (req, res) => {
 
-    const {UserID, image, price, age, status, weight, categoryID, breedID} = req.body;
+    const { UserID, image, price, age, status, weight, categoryID, breedID} = req.body;
 
     pool.query('INSERT INTO "public"."Livestock"("UserID", image, price, age, status, weight, "categoryID", "breedID") VALUES ($1, $2, $3, $4, $5, $6, $7, $8)',  [UserID, image, price, age, status, weight, categoryID, breedID], (error, results) => {
       if (error) {
