@@ -39,10 +39,25 @@ const getTransaction = (req, res) => {
   }),handleErr
 }
 
+const deleteTransaction = (req, res) => {
+
+  const transactionID = req.params.id;
+  const { status } = req.body
+
+  pool.query('UPDATE "public"."Transaction" SET status=$1 WHERE "transactionID" = $2;',[status,transactionID], (error, results) => {
+
+        res.status(200).send('transaction archived')
+      //response.send(JSON.stringify(results));
+
+    }
+  )
+}
 
 module.exports = {
     createTransaction,
     getTransaction,
     updateTransaction,
-    getFullTransaction
+    getFullTransaction,
+    deleteTransaction
+
 }
