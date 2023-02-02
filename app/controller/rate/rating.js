@@ -20,7 +20,7 @@ const createRating = (request, response) => {
 
 const getRating = (request, response) => {
     pool.query('SELECT * FROM "public"."Rating" ORDER BY "rateID" ASC', (error, results) => {
-      if (err) {
+      if (error) {
         throw error
       }
       response.status(200).json(results.rows)
