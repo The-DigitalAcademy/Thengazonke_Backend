@@ -19,19 +19,11 @@ const updateTransaction = (request, response) => {
   const id = parseInt(request.params.id)
   const {status}  = request.body
 
-  pool.query(
-   // 'UPDATE "public"."Breed" SET  "categoryID"= $1, "breedName" = $2 , "description"=$3 WHERE "breedID" = $4',
-
-
-   ' UPDATE "public"."Transaction" SET "status" =$1 WHERE "transactionID"=$2',
-
-
-    [status, id],
-    (error, results) => {
+  pool.query(' UPDATE "public"."Transaction" SET "status" =$1 WHERE "transactionID"=$2',[status, id],(error, results) => {
       if (error) {
         throw error
       }
-      response.status(200).send(`Breed modified with ID: ${id}`)
+      response.status(200).send(`Transaction modified with ID: ${id}`)
     }
   )
 }
