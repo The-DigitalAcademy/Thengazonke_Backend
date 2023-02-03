@@ -46,9 +46,6 @@ const updateLivestock = (request, response) => {
   )
 }
 
-
-  
-
 module.exports = {
     postLivestock,
     getLivestock,
