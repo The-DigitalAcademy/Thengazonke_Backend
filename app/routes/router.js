@@ -7,7 +7,8 @@ const category = require('../controller/livestock/category');
 const livestock = require('../controller/livestock/livestock');
 const breed = require('../controller/livestock/breed');
 const rating =  require('../controller/rate/rating');
-const transaction = require('../controller/transaction/transaction')
+const transaction = require('../controller/transaction/transaction');
+const stats = require('../controller/statistics/stats')
 
 
 //routes for login and registering
@@ -18,7 +19,7 @@ router.post('/users/register', reg.register)
 router.get('/users/getUsers', user.getUsers)
 router.post('/users/createUsers', user.postUsers)
 router.put('/users/updateUsers/:id', user.updateUser)
-router.put('/users/deleteUser/:id', user.deleteUser)
+router.delete('/users/deleteUser/:id', user.deleteUser)
 
 //routes for category
 router.get('/category/getCategory', category.getCategory)
@@ -50,5 +51,17 @@ router.post('/transaction/createTransaction', transaction.createTransaction)
 router.put('/transaction/updateTransaction/:id' , transaction.updateTransaction)
 router.get('/transaction/getAllTransaction',transaction.getTransaction)
 router.get('/transaction/getFullTransaction',transaction.getFullTransaction)
+router.delete('/transaction/deleteTransaction/:id',transaction.deleteTransaction)
+
+//admin statistics routes
+router.get('/statistics/getRegisteredUserspermonth',stats.registeredUserperMonth)
+router.get('/statistics/getNumberofLivestockPosted',stats.getNumLivestock)
+router.get('/statistics/getNumberofCompleteOrders', stats.getNumCompleteOrders)
+router.get('/statistics/getAllOrders',stats.getAllOrders)
+router.get('/statistics/getNumPendingOrders', stats.getNumPendingOrders)
+router.get('/statistics/getNumInprogressOrders' ,stats.getNumInProgressOrders)
+router.get('/statistics/getNumArchieveOrders' ,stats.getNumArchieveOrders)
+
+
 
 module.exports = router;  

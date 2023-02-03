@@ -34,20 +34,6 @@ const postLivestock = (req, res) => {
     })
 }
 
-
-// const updateLivestock = (req, res) => {
-//     const id = parseInt(req.params.id);
-//     const { UserID, image, price, age, status, weight, categoryID, breedID, description, color, quantity, address } = req.body
-  
-//     pool.query('UPDATE "public"."Livestock" SET "UserID"=$1, image=$2, price=$3, age=$4, status=$5, weight=$6, "categoryID"=$7, "breedID"=$8 , description=$9, color=$10, quantity=$11, address=$12 WHERE livestockID=$13;',[UserID, image, price, age, status, weight, categoryID, breedID, description, color, quantity, address,id], (error, results) => {
-        
-//           res.status(200).send(results)
-//         //response.send(JSON.stringify(results));
-        
-//       }
-//     )
-//   }
-
 const updateLivestock = (request, response) => {
   const id = parseInt(request.params.id)
   const {UserID, image, price, age, status, weight, categoryID, breedID, description, color, quantity, address,gender}  = request.body
