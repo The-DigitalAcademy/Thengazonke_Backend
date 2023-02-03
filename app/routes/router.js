@@ -18,6 +18,7 @@ router.post('/users/register', reg.register)
 router.get('/users/getUsers', user.getUsers)
 router.post('/users/createUsers', user.postUsers)
 router.put('/users/updateUsers/:id', user.updateUser)
+router.put('/users/deleteUser/:id', user.deleteUser)
 
 //routes for category
 router.get('/category/getCategory', category.getCategory)
