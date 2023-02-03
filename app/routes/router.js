@@ -7,7 +7,8 @@ const category = require('../controller/livestock/category');
 const livestock = require('../controller/livestock/livestock');
 const breed = require('../controller/livestock/breed');
 const rating =  require('../controller/rate/rating');
-const transaction = require('../controller/transaction/transaction')
+const transaction = require('../controller/transaction/transaction');
+const stats = require('../controller/statistics/stats')
 
 
 //routes for login and registering
@@ -46,5 +47,8 @@ router.get('/rate/getRatingPerUser/:id', rating.getRatingPerUser)
 router.post('/transaction/createTransaction', transaction.createTransaction)
 router.put('/transaction/updateTransaction/:id' , transaction.updateTransaction)
 router.get('/transaction/getAllTransaction',transaction.getTransaction)
+
+//admin statistics routes
+router.get('/statistics/getRegisteredUserspermonth',stats.registeredUserperMonth)
 
 module.exports = router;  
