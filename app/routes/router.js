@@ -18,6 +18,8 @@ router.post('/users/register', reg.register)
 //routes for users
 router.get('/users/getUsers', user.getUsers)
 router.post('/users/createUsers', user.postUsers)
+router.put('/users/updateUsers/:id', user.updateUser)
+router.delete('/users/deleteUser/:id', user.deleteUser)
 
 //routes for category
 router.get('/category/getCategory', category.getCategory)
@@ -27,6 +29,7 @@ router.put('/category/updateCategory', category.updateCategory)
 //routes for livestock
 router.get('/livestock/getLivestock', livestock.getLivestock)
 router.get('/livestock/getPostedLivestock', livestock.getPostedLivestock)
+router.get('/livestock/getPostedLivestockByUser', livestock.getPostedLivestockByUser)
 router.post('/livestock/createLivestock', livestock.postLivestock)
 router.put('/livestock/updateLivestock/:id', livestock.updateLivestock)
 
@@ -47,6 +50,8 @@ router.get('/rate/getRatingPerUser/:id', rating.getRatingPerUser)
 router.post('/transaction/createTransaction', transaction.createTransaction)
 router.put('/transaction/updateTransaction/:id' , transaction.updateTransaction)
 router.get('/transaction/getAllTransaction',transaction.getTransaction)
+router.get('/transaction/getFullTransaction',transaction.getFullTransaction)
+router.delete('/transaction/deleteTransaction/:id',transaction.deleteTransaction)
 
 //admin statistics routes
 router.get('/statistics/getRegisteredUserspermonth',stats.registeredUserperMonth)

@@ -28,15 +28,36 @@ const updateTransaction = (request, response) => {
   )
 }
 
+const getFullTransaction = (req, res) => {
+  pool.query('SELECT t.status,t."transDate", t."transactionID",u.fullname,u."Userid", l.age, l.image,l.price,l.weight, c."categoryName", b."breedName" FROM public."Transaction" t, "Livestock" l, "Users" u, "Category" c, "Breed" b WHERE t."livestockID" = l."livestockID" AND t."userID" = u."Userid" AND l."categoryID" = c."categoryID" AND l."breedID" = b."breedID" ORDER BY t."transactionID" ASC ', (error, results) => {
+    res.status(200).send(results.rows)
+  }),handleErr
+}
 const getTransaction = (req, res) => {
   pool.query('SELECT * FROM "public"."Transaction" ORDER BY "transactionID" ASC ', (error, results) => {
     res.status(200).send(results.rows)
   }),handleErr
 }
 
+const deleteTransaction = (req, res) => {
+
+  const transactionID = req.params.id;
+  const { status } = req.body
+
+  pool.query('UPDATE "public"."Transaction" SET status=$1 WHERE "transactionID" = $2;',[status,transactionID], (error, results) => {
+
+        res.status(200).send('transaction archived')
+      //response.send(JSON.stringify(results));
+
+    }
+  )
+}
 
 module.exports = {
     createTransaction,
     getTransaction,
-    updateTransaction
+    updateTransaction,
+    getFullTransaction,
+    deleteTransaction
+
 }
