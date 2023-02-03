@@ -19,7 +19,7 @@ router.get('/users/getUsers', user.getUsers)
 router.post('/users/createUsers', user.postUsers)
 
 //routes for category
-router.get('/category/getCategory', category.postCategory)
+router.get('/category/getCategory', category.getCategory)
 router.post('/category/createCategory', category.postCategory)
 router.put('/category/updateCategory', category.updateCategory)
 
