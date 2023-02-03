@@ -8,6 +8,7 @@ const livestock = require('../controller/livestock/livestock');
 const breed = require('../controller/livestock/breed');
 const rating =  require('../controller/rate/rating');
 const transaction = require('../controller/transaction/transaction')
+const notification = require('../controller/notification/notification');
 
 
 //routes for login and registering
@@ -44,5 +45,11 @@ router.get('/rate/getRatingPerUser/:id', rating.getRatingPerUser)
 
 //routes for transaction
 router.post('/transaction/createTrans',transaction.createTransaction)
+
+//routes for notifications
+router.post('/notification/createNotification', notification.createNotification)
+// router.put('/notification/updateNotification/:id' , notification.updateNotification)
+// router.delete('/notification/deleteNotification/:id', notification.removeNotification)
+router.get('/notification/getAllNotification',notification.getNotification)
 
 module.exports = router;  
