@@ -13,14 +13,6 @@ const registeredUserperMonth = (request, response)=>{
 }
 
 
-const getLivestock = (req, res) => {
-    pool.query('SELECT * FROM "public"."Livestock" ORDER BY "livestockID" ASC ', (error, results) => {
-      res.status(200).send(results.rows)
-    }),handleErr
-}
-
-
-
 
 module.exports = {
     registeredUserperMonth
