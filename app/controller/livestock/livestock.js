@@ -24,9 +24,10 @@ const getPostedLivestockByUser = (req, res) => {
 
 const postLivestock = (req, res) => {
 
-    const {UserID, image, price, age, status, weight, categoryID, breedID,} = req.body;
+    // const {UserID, image, price, age, status, weight, categoryID, breedID,} = req.body;
+    const {UserID, image, price, age, status, weight, categoryID, breedID, description, color, quantity, address, gender}  = req.body
 
-    pool.query('INSERT INTO "public"."Livestock"("UserID", image, price, age, status, weight, "categoryID", "breedID") VALUES ($1, $2, $3, $4, $5, $6, $7, $8)',  [UserID, image, price, age, status, weight, categoryID, breedID], (error, results) => {
+    pool.query('INSERT INTO "public"."Livestock"("UserID", image, price, age, status, weight, "categoryID", "breedID", description, color, quantity, address, gender) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13 )',  [UserID, image, price, age, status, weight, categoryID, breedID, description, color, quantity, address, gender], (error, results) => {
       if (error) {
       }
       res.status(201).send(`Livestock added`)
@@ -35,9 +36,9 @@ const postLivestock = (req, res) => {
 
 const updateLivestock = (request, response) => {
   const id = parseInt(request.params.id)
-  const {UserID, image, price, age, status, weight, categoryID, breedID, description, color, quantity, address}  = request.body
+  const {UserID, image, price, age, status, weight, categoryID, breedID, description, color, quantity, address,gender}  = request.body
 
-  pool.query('UPDATE public."Livestock" SET "UserID"=$1, image=$2, price=$3, age=$4, status=$5, weight=$6,"categoryID"=$7, "breedID"=$8, description=$9, color=$10, quantity=$11, address=$12 WHERE "livestockID" =$13;',[UserID, image, price, age, status, weight, categoryID, breedID, description, color, quantity, address, id],(error, results) => {
+  pool.query('UPDATE public."Livestock" SET "UserID"=$1, image=$2, price=$3, age=$4, status=$5, weight=$6,"categoryID"=$7, "breedID"=$8, description=$9, color=$10, quantity=$11, address=$12 gender=$13 WHERE "livestockID" =$14;',[UserID, image, price, age, status, weight, categoryID, breedID, description, color, quantity, address,gender, id],(error, results) => {
       if (error) {
         throw error
       }
