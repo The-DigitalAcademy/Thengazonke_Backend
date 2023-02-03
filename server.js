@@ -18,7 +18,10 @@ const config = {
 const cors = require('cors');
 
 var corsOptions = {
-    origin:"*"
+    Access_Control_Allow_Origin: "*",
+    origin:"*",
+    methode:['GET','POST','PATCH','DELETE','PUT'],
+    allowedHeaders:'Content-Type, Authorization, Origin, X-Requested-With, Accept'
 }
 app.use(cors(corsOptions));
 
