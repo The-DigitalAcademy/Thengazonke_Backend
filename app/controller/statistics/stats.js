@@ -68,8 +68,7 @@ const getNumInProgressOrders = (request , response) =>{
 })
 }
 
-
-
+ 
 module.exports = {
     registeredUserperMonth,
     getNumLivestock,

@@ -6,9 +6,9 @@ const handleErr = (err, req, res, next) => {
 
 const createTransaction = (req, res) => {
 
-    const {livestockID, userID,status} = req.body;
+    const {livestockID, userID,status,buyerID} = req.body;
 
-    pool.query('INSERT INTO "public"."Transaction"("livestockID", "userID", "status")VALUES ($1,$2,$3)',[livestockID, userID,status], (error, results) => {
+    pool.query('INSERT INTO "public"."Transaction"("livestockID", "userID", "status","buyerID")VALUES ($1,$2,$3,$3)',[livestockID, userID,status,buyerID], (error, results) => {
       if (error) {
       }
       res.status(201).send(`Transaction created`)
