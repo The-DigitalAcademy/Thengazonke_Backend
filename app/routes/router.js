@@ -32,6 +32,7 @@ router.get('/livestock/getPostedLivestock', livestock.getPostedLivestock)
 router.get('/livestock/getPostedLivestockByUser', livestock.getPostedLivestockByUser)
 router.post('/livestock/createLivestock', livestock.postLivestock)
 router.put('/livestock/updateLivestock/:id', livestock.updateLivestock)
+router.put('/livestock/deleteLivestock/:id',livestock.deleteLivestock)
 
 
 //routes for breed
