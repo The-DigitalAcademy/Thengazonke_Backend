@@ -47,10 +47,27 @@ const updateLivestock = (request, response) => {
   )
 }
 
+const deleteLivestock= (req, res) => {
+
+  const id = req.params.id;
+  const { status } = req.body
+
+  pool.query('UPDATE "public"."Livestock" SET status=$1 WHERE "livestockID" = $2;',[status,id], (error, results) => {
+
+        console.log('Backend status',status)
+        console.log(id)
+        res.status(200).send('transaction archived')
+      //response.send(JSON.stringify(results));
+
+    }
+  )
+}
+
 module.exports = {
     postLivestock,
     getLivestock,
     updateLivestock,
     getPostedLivestock,
-    getPostedLivestockByUser
+    getPostedLivestockByUser,
+    deleteLivestock
 }
