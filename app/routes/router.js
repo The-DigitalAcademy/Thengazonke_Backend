@@ -59,6 +59,7 @@ router.delete('/transaction/deleteTransaction/:id',transaction.deleteTransaction
 router.get('/statistics/getNumUser',stats.getNumUsers)
 router.get('/statistics/getRegisteredUserspermonth',stats.registeredUserperMonth)
 router.get('/statistics/getNumberofLivestockPosted',stats.getNumLivestock)
+router.get('/statistics/getregisteredLivestockperMonth',stats.registeredLivestockperMonth)
 router.get('/statistics/getNumberofCompleteOrders', stats.getNumCompleteOrders)
 router.get('/statistics/getAllOrders',stats.getAllOrders)
 router.get('/statistics/getNumPendingOrders', stats.getNumPendingOrders)
