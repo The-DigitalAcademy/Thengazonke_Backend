@@ -14,7 +14,7 @@ const getNumUsers = (req,res)=>{
 
 const registeredUserperMonth = (request, response)=>{
 
-    pool.query(`SELECT DATE_TRUNC('month',"createdAt") AS  registered_month, COUNT("Userid") AS count FROM "Users" GROUP BY DATE_TRUNC('month',"createdAt");`,(error,results)=>{
+    pool.query(`SELECT DATE_TRUNC('month',"createdAt") AS  registered_month, COUNT("Userid") AS count FROM "Users" GROUP BY DATE_TRUNC('month',"createdAt") ORDER BY DATE_TRUNC('month',"createdAt");`,(error,results)=>{
         if (error) {
             throw error
           }
@@ -23,11 +23,21 @@ const registeredUserperMonth = (request, response)=>{
 }
 
 const getNumLivestock = (request, response)=>{
-    pool.query('SELECT SUM("quantity") AS Number_of_Livestocks FROM "Livestock"',(error,results)=>{
+    pool.query('SELECT SUM("quantity") AS numlivestock FROM "Livestock"',(error,results)=>{
         if(error){
             throw error
         }
         response.status(200).send(results.rows)
+    })
+}
+
+const registeredLivestockperMonth = (request, response)=>{
+
+    pool.query(`SELECT DATE_TRUNC('month',"createdAT") AS  registered_month, COUNT(quantity) AS count FROM "Livestock" GROUP BY DATE_TRUNC('month',"createdAT") ORDER BY DATE_TRUNC('month',"createdAT");`,(error,results)=>{
+        if (error) {
+            throw error
+          }
+          response.status(200).send(results.rows)
     })
 }
 
@@ -83,6 +93,7 @@ module.exports = {
     getNumUsers,
     registeredUserperMonth,
     getNumLivestock,
+    registeredLivestockperMonth,
     getNumCompleteOrders,
     getAllOrders,
     getNumPendingOrders,

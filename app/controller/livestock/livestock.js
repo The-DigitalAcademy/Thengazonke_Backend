@@ -11,7 +11,7 @@ const getLivestock = (req, res) => {
 }
 
 const getPostedLivestock = (req, res) => {
-    pool.query('SELECT d."categoryID", d."categoryName", b."breedName",b."breedID",b.description,l."createdAT",l."UserID",l."livestockID",l.age,l.image,l.price,l.status,l.weight  FROM "Livestock" l, "Category" d, "Breed" b WHERE d."categoryID" = l."categoryID" AND l."breedID" = b."breedID";', (error, results) => {
+    pool.query('SELECT d."categoryID", d."categoryName", b."breedName",b."breedID",l.description,l."createdAT",l."UserID",l."livestockID",l.age,l.image,l.price,l.status,l.weight, l.address,l.quantity,l.color,l.gender  FROM "Livestock" l, "Category" d, "Breed" b WHERE d."categoryID" = l."categoryID" AND l."breedID" = b."breedID";', (error, results) => {
         res.status(200).send(results.rows)
     }),handleErr
 }
