@@ -2,6 +2,15 @@ const { request, response } = require('express')
 
 const pool = require('../../config/connection')
 
+const getNumUsers = (req,res)=>{
+
+    pool.query('SELECT COUNT("Userid") AS numUsers FROM "Users";',(error ,results)=>{
+    if(error){
+        throw error
+    }
+    res.status(200).json(results.rows)
+    })
+  }
 
 const registeredUserperMonth = (request, response)=>{
 
@@ -71,6 +80,7 @@ const getNumInProgressOrders = (request , response) =>{
 
 
 module.exports = {
+    getNumUsers,
     registeredUserperMonth,
     getNumLivestock,
     getNumCompleteOrders,
