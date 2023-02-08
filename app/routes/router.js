@@ -45,7 +45,8 @@ router.get('/breed/getOnebreed/:id', breed.getBreedById)
 //routes for rating 
 router.post('/rate/createRate',rating.createRating)
 router.get('/rate/getRatings',rating.getRating)
-router.get('/rate/getRatingPerUser/:id', rating.getRatingPerUser)
+router.get('/rate/getRatingPerUser', rating.getRatingPerUser)
+router.get('/rate/getReviewPerUser', rating.getReviewPerUser)
 
 //routes for transaction
 router.post('/transaction/createTransaction', transaction.createTransaction)
@@ -55,6 +56,7 @@ router.get('/transaction/getFullTransaction',transaction.getFullTransaction)
 router.delete('/transaction/deleteTransaction/:id',transaction.deleteTransaction)
 
 //admin statistics routes
+router.get('/statistics/getNumUser',stats.getNumUsers)
 router.get('/statistics/getRegisteredUserspermonth',stats.registeredUserperMonth)
 router.get('/statistics/getNumberofLivestockPosted',stats.getNumLivestock)
 router.get('/statistics/getNumberofCompleteOrders', stats.getNumCompleteOrders)
