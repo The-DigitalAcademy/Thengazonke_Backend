@@ -87,8 +87,7 @@ const getNumInProgressOrders = (request , response) =>{
 })
 }
 
-
-
+ 
 module.exports = {
     getNumUsers,
     registeredUserperMonth,
