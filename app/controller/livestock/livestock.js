@@ -38,7 +38,7 @@ const updateLivestock = (request, response) => {
   const id = parseInt(request.params.id)
   const {UserID, image, price, age, status, weight, categoryID, breedID, description, color, quantity, address,gender}  = request.body
 
-  pool.query('UPDATE public."Livestock" SET "UserID"=$1, image=$2, price=$3, age=$4, status=$5, weight=$6,"categoryID"=$7, "breedID"=$8, description=$9, color=$10, quantity=$11, address=$12 gender=$13 WHERE "livestockID" =$14;',[UserID, image, price, age, status, weight, categoryID, breedID, description, color, quantity, address,gender, id],(error, results) => {
+  pool.query('UPDATE public."Livestock" SET "UserID"=$1, image=$2, price=$3, age=$4, status=$5, weight=$6,"categoryID"=$7, "breedID"=$8, description=$9, color=$10, quantity=$11, address=$12, gender=$13 WHERE "livestockID" =$14;',[UserID, image, price, age, status, weight, categoryID, breedID, description, color, quantity, address,gender, id],(error, results) => {
       if (error) {
         throw error
       }
