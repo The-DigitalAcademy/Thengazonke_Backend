@@ -7,14 +7,6 @@ const pool = require("../../config/connection")
 
 const register  =  async (req, res) => {
     const { fullname, email, password, phone, address, status, usertype } =  req.body;
-    // const fullname = req.body;
-    // const email= req.body;
-    // const password= req.body;
-    // const phone= req.body;
-    // const address= req.body;
-    // const status= req.body;
-    // // const createdAt= req.body;
-    // const usertype = req.body;
 
     try {
         const  data  =  await pool.query(`SELECT * FROM public."Users" WHERE email= $1;`, [email]); //Checking if user already exists
