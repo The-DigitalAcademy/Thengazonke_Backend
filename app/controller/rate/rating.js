@@ -20,16 +20,15 @@ const createRating = (request, response) => {
 
 const getRating = (request, response) => {
     pool.query('SELECT * FROM "public"."Rating" ORDER BY "rateID" ASC', (error, results) => {
-      if (err) {
+      if (error) {
         throw error
       }
       response.status(200).json(results.rows)
     })
   }
 
-  const getRatingPerUser = function (request, response) {
-    const id = parseInt(request.params.id)
-    pool.query('SELECT * FROM "public"."Rating" WHERE "userRateID" =$1',[id],(error,results) =>{
+  const getRatingPerUser = (request, response) => {
+    pool.query('SELECT Sum(r.rate)/count(r."userRaterID") as sumOfRate, r."userRateID", count(r."userRaterID") as numberOfRater, u."Userid", u.fullname, u.email FROM public."Rating" r, "Users" u WHERE u."Userid" = r."userRateID" group by r."userRateID", u."Userid", u.fullname;',(error,results) =>{
         if(error){
             throw error
         }
@@ -37,10 +36,21 @@ const getRating = (request, response) => {
     })
   }
 
+  const getReviewPerUser = (request, response) => {
+    pool.query('  SELECT r."rateID", r."userRaterID", r."userRateID", r."transactionID", r.rate, r.review, r."createdAt", u.email, u.fullname FROM public."Rating" r, "Users" u WHERE u."Userid" = "userRaterID";',(error,results) =>{
+        if(error){
+            throw error
+        }
+        response.status(200).json(results.rows)
+    })
+  }
+
+
 module.exports = {
 
     createRating,
     getRating,
-    getRatingPerUser
+    getRatingPerUser,
+    getReviewPerUser
 
 }
