@@ -11,7 +11,7 @@ const getLivestock = (req, res) => {
 }
 
 const getPostedLivestock = (req, res) => {
-    pool.query('SELECT d."categoryID", d."categoryName", b."breedName",b."breedID",b.description,l."createdAT",l."UserID",l."livestockID",l.age,l.image,l.price,l.status,l.weight  FROM "Livestock" l, "Category" d, "Breed" b WHERE d."categoryID" = l."categoryID" AND l."breedID" = b."breedID";', (error, results) => {
+    pool.query('SELECT d."categoryID", d."categoryName", b."breedName",b."breedID",l.description,l."createdAT",l."UserID",l."livestockID",l.age,l.image,l.price,l.status,l.weight, l.address,l.quantity,l.color,l.gender  FROM "Livestock" l, "Category" d, "Breed" b WHERE d."categoryID" = l."categoryID" AND l."breedID" = b."breedID";', (error, results) => {
         res.status(200).send(results.rows)
     }),handleErr
 }
@@ -38,11 +38,27 @@ const updateLivestock = (request, response) => {
   const id = parseInt(request.params.id)
   const {UserID, image, price, age, status, weight, categoryID, breedID, description, color, quantity, address,gender}  = request.body
 
-  pool.query('UPDATE public."Livestock" SET "UserID"=$1, image=$2, price=$3, age=$4, status=$5, weight=$6,"categoryID"=$7, "breedID"=$8, description=$9, color=$10, quantity=$11, address=$12 gender=$13 WHERE "livestockID" =$14;',[UserID, image, price, age, status, weight, categoryID, breedID, description, color, quantity, address,gender, id],(error, results) => {
+  pool.query('UPDATE public."Livestock" SET "UserID"=$1, image=$2, price=$3, age=$4, status=$5, weight=$6,"categoryID"=$7, "breedID"=$8, description=$9, color=$10, quantity=$11, address=$12, gender=$13 WHERE "livestockID" =$14;',[UserID, image, price, age, status, weight, categoryID, breedID, description, color, quantity, address,gender, id],(error, results) => {
       if (error) {
         throw error
       }
       response.status(200).send(`Livestock modified with ID: ${id}`)
+    }
+  )
+}
+
+const deleteLivestock= (req, res) => {
+
+  const id = req.params.id;
+  const { status } = req.body
+
+  pool.query('UPDATE "public"."Livestock" SET status=$1 WHERE "livestockID" = $2;',[status,id], (error, results) => {
+
+        console.log('Backend status',status)
+        console.log(id)
+        res.status(200).send('transaction archived')
+      //response.send(JSON.stringify(results));
+
     }
   )
 }
@@ -52,5 +68,7 @@ module.exports = {
     getLivestock,
     updateLivestock,
     getPostedLivestock,
-    getPostedLivestockByUser
+    getPostedLivestockByUser,
+    deleteLivestock
 }
+
