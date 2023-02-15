@@ -15,16 +15,16 @@ const config = {
     max: 10, // max number of clients in the pool
     idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
 };
-// const cors = require('cors');
+const cors = require('cors');
 
-// var corsOptions = {
-//     Access_Control_Allow_Credentials: "true",
-//     Access_Control_Allow_Origin: "*",
-//     origin:"*",
-//     methode:['GET','POST','PATCH','DELETE','PUT'],
-//     allowedHeaders:'Content-Type, Authorization, Origin, X-Requested-With, Accept'
-// }
-// app.use(cors(corsOptions));
+var corsOptions = {
+    Access_Control_Allow_Credentials: "true",
+    Access_Control_Allow_Origin: "*",
+    origin:"*",
+    methode:['GET','POST','PATCH','DELETE','PUT'],
+    allowedHeaders:'Content-Type, Authorization, Origin, X-Requested-With, Accept'
+}
+app.use(cors(corsOptions));
 
 
 app.use(bodyParser.json())
