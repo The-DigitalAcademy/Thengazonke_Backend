@@ -37,7 +37,7 @@ const getRating = (request, response) => {
   }
 
   const getReviewPerUser = (request, response) => {
-    pool.query('  SELECT r."rateID", r."userRaterID", r."userRateID", r."transactionID", r.rate, r.review, r."createdAt", u.email, u.fullname FROM public."Rating" r, "Users" u WHERE u."Userid" = "userRaterID";',(error,results) =>{
+    pool.query('SELECT r."rateID", r."userRaterID", r."userRateID", r."transactionID", r.rate, r.review, r."createdAt", u.email, u.fullname FROM public."Rating" r, "Users" u WHERE u."Userid" = "userRaterID";',(error,results) =>{
         if(error){
             throw error
         }
