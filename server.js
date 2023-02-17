@@ -3,16 +3,17 @@ const bodyParser = require('body-parser')
 const pg = require('pg');
 const app = express();
 const routes = require('./app/routes/router');
+require('dotenv').config()
 
 
 // postgres://djaklifj:DKwTKeY5SZFs8uQ58NDgxxehI16YOAuu@ruby.db.elephantsql.com/djaklifj
 const config = {
-    user: 'djaklifj',
-    database: 'djaklifj',
-    password: 'DKwTKeY5SZFs8uQ58NDgxxehI16YOAuu',
-    host: 'ruby.db.elephantsql.com',
-    port: 5432,
-    max: 10, // max number of clients in the pool
+    user: process.env.DB_USENAME,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    host: process.env.DB_HOST,
+    port: process.env.DB_POST,
+    max: process.env.DB_CLIENT_MAX, // max number of clients in the pool
     idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
 };
 const cors = require('cors');
@@ -24,7 +25,7 @@ var corsOptions = {
     allowedHeaders:'Content-Type, Authorization, Origin, X-Requested-With, Accept'
 }
 app.use(cors(corsOptions));
-
+console.log(process.env.DB_IDLETIMEOUTMILLIS);
 
 app.use(bodyParser.json())
 app.use(
