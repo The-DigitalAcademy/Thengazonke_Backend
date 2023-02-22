@@ -54,7 +54,7 @@ router.get('/transaction/getAllTransaction',transaction.getTransaction)
 router.get('/transaction/getFullTransaction',transaction.getFullTransaction)
 router.delete('/transaction/deleteTransaction/:id',transaction.deleteTransaction)
 
-//admin statistics routes
+//admin statistis routes
 router.get('/statistics/getRegisteredUserspermonth',stats.registeredUserperMonth)
 router.get('/statistics/getNumberofLivestockPosted',stats.getNumLivestock)
 router.get('/statistics/getNumberofCompleteOrders', stats.getNumCompleteOrders)
@@ -62,7 +62,5 @@ router.get('/statistics/getAllOrders',stats.getAllOrders)
 router.get('/statistics/getNumPendingOrders', stats.getNumPendingOrders)
 router.get('/statistics/getNumInprogressOrders' ,stats.getNumInProgressOrders)
 router.get('/statistics/getNumArchieveOrders' ,stats.getNumArchieveOrders)
-
-
 
 module.exports = router;  
