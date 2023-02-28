@@ -28,9 +28,9 @@ const postUsers = (req, res) => {
 const updateUser = (req, res) => {
 
     const Userid = req.params.id;
-    const { fullname, email, phone ,address ,status, usertype } = req.body
+    const { fullname, email, phone ,address ,status, id_document, agric_document } = req.body
   
-    pool.query('UPDATE "public"."Users" SET fullname=$1, email=$2, phone=$3, address=$4, status=$5, usertype=$6 WHERE "Userid" = $7;',[fullname, email, phone ,address ,status, usertype, Userid], (error, results) => {
+    pool.query('UPDATE "public"."Users" SET fullname=$1, email=$2, phone=$3, address=$4, status=$5, id_document =$6, agric_document= $7 WHERE "Userid" = $8;',[fullname, email, phone ,address ,status, id_document, agric_document, Userid], (error, results) => {
         
           res.status(200).send('User updated')
         //response.send(JSON.stringify(results));
