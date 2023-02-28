@@ -5,7 +5,7 @@ const app = express();
 const routes = require('./app/routes/router');
 
 
-// postgres://djaklifj:DKwTKeY5SZFs8uQ58NDgxxehI16YOAuu@ruby.db.elephantsql.com/djaklifj
+//postgres://djaklifj:DKwTKeY5SZFs8uQ58NDgxxehI16YOAuu@ruby.db.elephantsql.com/djaklifj
 const config = {
     user: 'djaklifj',
     database: 'djaklifj',
@@ -15,6 +15,17 @@ const config = {
     max: 10, // max number of clients in the pool
     idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
 };
+
+// const config = {
+//     user: 'postgres',
+//     database: 'thengazonkeDB',
+//     password: 'Letsdoit!',
+//     host: 'localhost://',
+//     port: 5432,
+//     max: 10, // max number of clients in the pool
+//     idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
+// };
+
 const cors = require('cors');
 
 var corsOptions = {
