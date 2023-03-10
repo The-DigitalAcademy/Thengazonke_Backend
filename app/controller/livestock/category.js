@@ -25,11 +25,13 @@ const postCategory = (req, res) => {
 
 const updateCategory = (req, res) => {
     const categoryID = parseInt(req.params.id);
-    const categoryName = req.body
+    const { categoryName } = req.body
+
+    console.log(categoryName)
   
-    pool.query('UPDATE "public"."Category" SET "categoryName"=$1 WHERE returning *',[categoryName, categoryID], (error, results) => {
+    pool.query('UPDATE "public"."Category" SET "categoryName"=$1 WHERE "categoryID" = $2',[categoryName, categoryID], (error, results) => {
         
-          response.status(200).send()
+          res.status(200).send()
         //response.send(JSON.stringify(results));
         
       }
