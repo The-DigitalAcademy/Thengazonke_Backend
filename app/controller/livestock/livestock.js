@@ -49,8 +49,11 @@ const updateLivestock = (request, response) => {
 
 const deleteLivestock= (req, res) => {
 
+  
+
   const id = req.params.id;
   const { status } = req.body
+  console.log('deleteLivestock', id, status);
 
   pool.query('UPDATE "public"."Livestock" SET status=$1 WHERE "livestockID" = $2;',[status,id], (error, results) => {
 

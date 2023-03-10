@@ -70,6 +70,19 @@ const removeBreed = (request, response) => {
             })
             
           }}
+
+const breedWithCatName = (req, res) => {
+{             
+      pool.query('SELECT b."breedID" ,b."categoryID" ,c."categoryName", b."breedName", b."description", b."createdAt" FROM "public"."Breed" b, "public"."Category" c WHERE c."categoryID" = b."categoryID"', function (error, results) 
+      {
+        if(error){
+          res.send('data not found')
+        }
+        else{
+          res.send(results.rows)
+        }
+      })              
+ }}
 //get breed by id
           const getBreedById = (request, response) => {
             const id = parseInt(request.params.id)
@@ -87,5 +100,6 @@ module.exports = {
     updateBreed,
     removeBreed,
     breed,
+    breedWithCatName,
     getBreedById
 }

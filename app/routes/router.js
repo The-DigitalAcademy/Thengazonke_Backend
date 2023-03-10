@@ -24,7 +24,7 @@ router.delete('/users/deleteUser/:id', user.deleteUser)
 //routes for category
 router.get('/category/getCategory', category.getCategory)
 router.post('/category/createCategory', category.postCategory)
-router.put('/category/updateCategory', category.updateCategory)
+router.put('/category/updateCategory/:id', category.updateCategory)
 
 //routes for livestock
 router.get('/livestock/getLivestock', livestock.getLivestock)
@@ -39,6 +39,7 @@ router.post('/breed/createBreed', breed.postBreed)
 router.put('/breed/updateBreed/:id' , breed.updateBreed)
 router.delete('/breed/deleteBreed/:id', breed.removeBreed)
 router.get('/breed/getAllBreed',breed.breed)
+router.get('/breed/getAllBreedWithCat',breed.breedWithCatName)
 router.get('/breed/getOnebreed/:id', breed.getBreedById)
 
 //routes for rating 
@@ -58,6 +59,7 @@ router.delete('/transaction/deleteTransaction/:id',transaction.deleteTransaction
 //admin statistis routes
 router.get('/statistics/getRegisteredUserspermonth',stats.registeredUserperMonth)
 router.get('/statistics/getNumberofLivestockPosted',stats.getNumLivestock)
+router.get('/statistics/getregisteredLivestockperMonth',stats.registeredLivestockperMonth)
 router.get('/statistics/getNumberofCompleteOrders', stats.getNumCompleteOrders)
 router.get('/statistics/getAllOrders',stats.getAllOrders)
 router.get('/statistics/getNumPendingOrders', stats.getNumPendingOrders)

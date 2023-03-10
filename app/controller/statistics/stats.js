@@ -23,7 +23,7 @@ const registeredUserperMonth = (request, response)=>{
 }
 
 const getNumLivestock = (request, response)=>{
-    pool.query('SELECT SUM("quantity") AS numlivestock FROM "Livestock"',(error,results)=>{
+    pool.query('SELECT COUNT("livestockID") AS numlivestock FROM "Livestock"',(error,results)=>{
         if(error){
             throw error
         }
@@ -33,7 +33,7 @@ const getNumLivestock = (request, response)=>{
 
 const registeredLivestockperMonth = (request, response)=>{
 
-    pool.query(`SELECT DATE_TRUNC('month',"createdAT") AS  registered_month, COUNT(quantity) AS count FROM "Livestock" GROUP BY DATE_TRUNC('month',"createdAT") ORDER BY DATE_TRUNC('month',"createdAT");`,(error,results)=>{
+    pool.query(`SELECT DATE_TRUNC('month',"createdAT") AS  registered_month, COUNT("livestockID") AS count FROM "Livestock" GROUP BY DATE_TRUNC('month',"createdAT") ORDER BY DATE_TRUNC('month',"createdAT");`,(error,results)=>{
         if (error) {
             throw error
           }
@@ -42,7 +42,7 @@ const registeredLivestockperMonth = (request, response)=>{
 }
 
 const getAllOrders  = (request, response)=>{
-    pool.query('SELECT COUNT("status") AS Number_of_Orders FROM "public"."Transaction"',(error , results)=>{
+    pool.query('SELECT COUNT("status") AS NumberofOrders FROM "public"."Transaction"',(error , results)=>{
         if(error){
             throw error
         }
@@ -52,7 +52,7 @@ const getAllOrders  = (request, response)=>{
 }
 
 const getNumCompleteOrders = (request , response) =>{
-pool.query(`SELECT COUNT("status") AS Number_of_Completed_Orders FROM "public"."Transaction" WHERE status = 'complete'`,(error,results)=>{
+pool.query(`SELECT COUNT("status") AS NumberofCompletedOrders FROM "public"."Transaction" WHERE status = 'complete'`,(error,results)=>{
 if(error){
     throw error
 }
@@ -61,7 +61,7 @@ response.status(200).send(results.rows)
 }
 
 const getNumPendingOrders = (request , response) =>{
-    pool.query(`SELECT COUNT("status") AS Number_of_Pending_Orders FROM "public"."Transaction" WHERE status = 'pending'`,(error,results)=>{
+    pool.query(`SELECT COUNT("status") AS NumberofPendingOrders FROM "public"."Transaction" WHERE "status" = 'pending'`,(error,results)=>{
     if(error){
         throw error
     }
@@ -70,7 +70,7 @@ const getNumPendingOrders = (request , response) =>{
     }
 
 const getNumInProgressOrders = (request , response) =>{
-        pool.query(`SELECT COUNT("status") AS Number_of_In-progress_Orders FROM "public"."Transaction" WHERE status = 'In-progress'`,(error,results)=>{
+        pool.query(`SELECT COUNT("status") AS NumberofInprogressOrders FROM "public"."Transaction" WHERE "status" = 'Inprogress'`,(error,results)=>{
         if(error){
             throw error
         }
@@ -79,7 +79,7 @@ const getNumInProgressOrders = (request , response) =>{
  }
 
  const getNumArchieveOrders = (request , response) =>{
-    pool.query(`SELECT COUNT("status") AS Number_of_Archieved_Orders FROM "public"."Transaction" WHERE status = 'archieved'`,(error,results)=>{
+    pool.query(`SELECT COUNT("status") AS NumberofArchievedOrders FROM "public"."Transaction" WHERE "status" = 'archived'`,(error,results)=>{
     if(error){
         throw error
     }
@@ -97,5 +97,5 @@ module.exports = {
     getAllOrders,
     getNumPendingOrders,
     getNumInProgressOrders,
-    getNumArchieveOrders
+    getNumArchieveOrders,
 }
